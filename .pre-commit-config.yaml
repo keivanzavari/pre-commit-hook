@@ -6,9 +6,27 @@ repos:
     -   id: end-of-file-fixer
     -   id: check-docstring-first
     -   id: check-json
+    -   id: pretty-format-json
+        args: [--autofix]
     -   id: check-yaml
+    -   id: no-commit-to-branch
+        args: [--branch=master]
 
-# - repo: https://github.com/pre-commit/mirrors-yapf
-#   rev: ''
-#   hooks:
-#     - id: yapf
+- repo: local
+  hooks:
+  - id: yapf
+    name: yapf
+    entry: yapf
+    language: python
+    files: \.(py)$
+    args: [-i, --style, google]
+
+
+- repo: local
+  hooks:
+  - id: clang-format
+    name: clang-format
+    entry: clang-format
+    language: system
+    files: \.(c|cc|cxx|cpp|h|hpp|hxx|proto)$
+    args: [-style=Google, -i]
