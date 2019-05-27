@@ -8,7 +8,12 @@ repos:
     -   id: check-json
     -   id: check-yaml
 
-# - repo: https://github.com/pre-commit/mirrors-yapf
-#   rev: ''
-#   hooks:
-#     - id: yapf
+- repo: local
+  hooks:
+  - id: yapf
+    name: yapf
+    description: This hook ...
+    entry: yapf
+    language: python
+    files: \.(py)$
+    args: [-i]
